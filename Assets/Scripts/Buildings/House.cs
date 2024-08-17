@@ -2,7 +2,7 @@
 {
     public class House: BuildingBase
     {
-        protected override int Income { get; set; } = Constants.Buildings.HouseIncome;
+        protected override int Income => Constants.Buildings.HouseIncome;
         
         protected override void OnMouseDown()
         {
