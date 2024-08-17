@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Map = _generator.GenerateMap();
         _mapDrawer.Draw(Map);
+        //TODO: Проверять на речку на этой точке
         _allowedBuildPositions.Add(new Vector2Int(Map.GetLength(1) / 2, Map.GetLength(0) / 2));
         BuildHouse();
     }
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
         var y = _hoisePositions.Select(it => it.y).Sum() / _hoisePositions.Count;
         _camera.transform.position = new Vector3(x, y, _camera.transform.position.z);
     }
+
     public void BuildHouse()
     {
         var pos = PopBuildPosition();

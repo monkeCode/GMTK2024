@@ -49,25 +49,24 @@ MonoBehaviour:
   _ground: {fileID: 11400000, guid: b8079b00c7139b3448edfc22e0280e6d, type: 2}
   _river: {fileID: 11400000, guid: 2b1ebcbcd47557e438a355ce6a7c6d23, type: 2}
   _road: {fileID: 11400000, guid: f6e15f90976d5c246aca2f4c70c758bc, type: 2}
+  _groundWinter: {fileID: 11400000, guid: 78d8b6df8a295b34b90421a77668684d, type: 2}
+  _riverWinter: {fileID: 11400000, guid: f62e44ae621193942b71cc24a4394b94, type: 2}
+  _roadWinter: {fileID: 11400000, guid: aee8f7e6c8031344a9ae1fc2c025ce8a, type: 2}
   _tilemap: {fileID: 0}
-  _spriteDecorations:
-  - {fileID: 21300000, guid: 73c680280c05e6744b04a26437c7d2f4, type: 3}
-  - {fileID: 21300000, guid: 037b7fddf2ca04d4b823111017b80c68, type: 3}
-  - {fileID: 21300000, guid: 85b38c822ec2c024888bb8d7e3f4a016, type: 3}
-  - {fileID: 21300000, guid: 732f0273ba54842429313231ff0a63fc, type: 3}
-  - {fileID: 21300000, guid: e422918eb31c31340baba9d0501270f3, type: 3}
-  - {fileID: 21300000, guid: bb3edb4cdb6c3de4e8f918e8b6c5022c, type: 3}
-  - {fileID: 21300000, guid: 7db447b1a608ed34c8b77e37c0571231, type: 3}
-  - {fileID: 21300000, guid: 8b0c038261060544ba0062b8dc0e3601, type: 3}
-  - {fileID: 21300000, guid: baa46fd8c73f5d1458ef8ad9e291f5f1, type: 3}
-  - {fileID: 21300000, guid: 535c0d1706b13be41b6b4c9c0fd315d0, type: 3}
-  - {fileID: 21300000, guid: d90c8c55a70aef040a8af98afbcc472a, type: 3}
-  - {fileID: 21300000, guid: a6edec5b6792ee54087f17a3a220201c, type: 3}
-  _prefabDecoration: {fileID: 2965726754458953897, guid: 50186982ef773b84ebb52c725a6b6084, type: 3}
+  _decorations:
+  - {fileID: 8627795409601158349, guid: e5306ea229d3d8349a3a328742a43988, type: 3}
+  - {fileID: 3509789785502758600, guid: f83aa3481bbf0d84e9065e683260ea9f, type: 3}
+  - {fileID: 343771730566334436, guid: 2d076629796e16941946d4d311f102fe, type: 3}
+  - {fileID: 3811393892631920190, guid: bd81cfe3e0cd2a145aa2c6a065f1e992, type: 3}
+  - {fileID: 7370378577311053316, guid: 3f51feb9670cfe245b4dde756e27e640, type: 3}
+  - {fileID: 7705600803791110124, guid: c48154a3b624c2a458c8ece5bc797f43, type: 3}
+  - {fileID: 3641043092570663673, guid: f4ad2881671b1934290f8bff1311918b, type: 3}
+  - {fileID: 4473272550546475412, guid: 45c82aa4dac7e3f449b72c46a80be8e4, type: 3}
+  - {fileID: 1585643857383988506, guid: 8a42dd28111276c45a665c4802557120, type: 3}
   _decorationProbability: 0.1
   _decorationLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _houseAnimationDuration: 0.3
   _houseAnimSound: {fileID: 8300000, guid: f36589396163c5c4cb091979b35dd05c, type: 3}
 --- !u!114 &76909443060530055
