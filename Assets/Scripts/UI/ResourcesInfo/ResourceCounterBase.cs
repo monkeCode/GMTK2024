@@ -8,7 +8,7 @@ namespace UI.ResourcesInfo
     {
         [SerializeField] protected ResourceManager resourceManager;
         [SerializeField] private TextMeshProUGUI text;
-        protected virtual string template { get; set; }
+        protected virtual string Template { get; set; }
 
         protected virtual void Start()
         {
@@ -18,7 +18,7 @@ namespace UI.ResourcesInfo
 
         protected void SetCount(int value)
         {
-            text.text = template + value;
+            text.text = Template + value;
         }
     }
 }

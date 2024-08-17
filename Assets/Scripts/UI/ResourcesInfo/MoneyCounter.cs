@@ -2,7 +2,7 @@
 {
     public class MoneyCounter: ResourceCounterBase
     {
-        protected override string template { get; set; } = "Money: ";
+        protected override string Template { get; set; } = "Money: ";
 
         protected override void Start()
         {

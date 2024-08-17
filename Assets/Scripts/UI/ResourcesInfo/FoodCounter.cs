@@ -2,7 +2,7 @@
 {
     public class FoodCounter: ResourceCounterBase
     {
-        protected override string template { get; set; } = "Food: ";
+        protected override string Template { get; set; } = "Food: ";
 
         protected override void Start()
         {

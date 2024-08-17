@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -118,6 +119,19 @@ namespace GameResources
             }
 
             ArmyCount -= count;
+            return true;
+        }
+
+        public bool TrySpendResources(BuildingPrice price)
+        {
+            if (MoneyCount < price.MoneyPrice || FoodCount < price.FoodPrice || ArmyCount < price.ArmyPrice)
+            {
+                return false;
+            }
+
+            MoneyCount -= price.MoneyPrice;
+            FoodCount -= price.FoodPrice;
+            ArmyCount -= price.ArmyPrice;
             return true;
         }
     }
