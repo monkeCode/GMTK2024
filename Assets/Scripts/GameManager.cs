@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Generator _generator;
 
+    [SerializeField] private Mapdrawer _mapDrawer;
+
     public static GameManager Instance { get; private set; }
 
     public CellType[,] Map;
@@ -23,7 +25,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        Debug.Log("Manager start");
+        Map = _generator.GenerateMap();
+        _mapDrawer.Draw(Map);
     }
 
     void Update()
