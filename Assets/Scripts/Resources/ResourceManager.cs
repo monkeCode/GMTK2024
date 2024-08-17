@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Resources
 {
-    public class ResourceManager
+    public class ResourceManager: MonoBehaviour
     {
         public int MoneyCount { get; private set; }
         public int FoodCount { get; private set; }
