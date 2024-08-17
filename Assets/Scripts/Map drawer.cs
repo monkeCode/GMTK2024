@@ -51,7 +51,7 @@ public class Mapdrawer : MonoBehaviour
         }
     }
 
-    private (float,float) ConvertCoord(float x, float y)
+    public static (float,float) ConvertCoord(float x, float y)
     {
         var angle = Mathf.PI / 4;
 

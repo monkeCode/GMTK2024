@@ -6,9 +6,9 @@ namespace Buildings
 {
     public class BuildController: MonoBehaviour
     {
-        private BuildingPrice _housePrice = new(5, 5, 0);
-        private BuildingPrice _farmPrice = new(0, 5, 5);
-        private BuildingPrice _towerPrice = new(5, 0, 5);
+        [SerializeField]private BuildingPrice _housePrice = new(5, 5, 0);
+        [SerializeField]private BuildingPrice _farmPrice = new(0, 5, 5);
+        [SerializeField]private BuildingPrice _towerPrice = new(5, 0, 5);
         private ResourceManager _resourceManager;
 
         private void Start()
@@ -21,6 +21,7 @@ namespace Buildings
         {
             if(_resourceManager.TrySpendResources(_housePrice))
             {
+                GameManager.Instance.BuildHouse();
                 //TODO: Build
                 //TODO: Update price
             }

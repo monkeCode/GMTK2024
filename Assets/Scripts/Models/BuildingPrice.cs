@@ -1,16 +1,24 @@
-﻿namespace Models
+﻿using System;
+using UnityEngine;
+
+namespace Models
 {
+    [Serializable]
     public class BuildingPrice
     {
         public BuildingPrice(int foodPrice, int armyPrice, int moneyPrice)
         {
-            FoodPrice = foodPrice;
-            ArmyPrice = armyPrice;
-            MoneyPrice = moneyPrice;
+            _foodPrice = foodPrice;
+            _armyPrice = armyPrice;
+            _moneyPrice = moneyPrice;
         }
 
-        public int MoneyPrice { get; }
-        public int FoodPrice { get; }
-        public int ArmyPrice { get; }
+        [SerializeField] private int _moneyPrice;
+        [SerializeField] private int _foodPrice;
+        [SerializeField] private int _armyPrice;
+
+        public int MoneyPrice => _moneyPrice;
+        public int FoodPrice => _foodPrice;
+        public int ArmyPrice => _armyPrice;
     }
 }
