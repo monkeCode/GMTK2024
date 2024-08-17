@@ -2,8 +2,6 @@
 {
     public class MoneyCounter: ResourceCounterBase
     {
-        protected override string Template { get; set; } = "Money: ";
-
         protected override void Start()
         {
             base.Start();

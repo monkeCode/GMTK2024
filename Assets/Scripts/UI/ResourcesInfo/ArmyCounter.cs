@@ -2,8 +2,6 @@
 {
     public class ArmyCounter: ResourceCounterBase
     {
-        protected override string Template { get; set; } = "Army: ";
-
         protected override void Start()
         {
             base.Start();
