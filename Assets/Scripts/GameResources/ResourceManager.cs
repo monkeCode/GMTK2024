@@ -7,7 +7,7 @@ namespace GameResources
 {
     public class ResourceManager: MonoBehaviour
     {
-        private int _moneyCount;
+       [SerializeField] private int _moneyCount;
         public int MoneyCount
         {
             get => _moneyCount;
@@ -18,7 +18,7 @@ namespace GameResources
             }
         }
 
-        private int _foodCount;
+        [SerializeField] private int _foodCount;
         public int FoodCount
         {
             get => _foodCount;
@@ -29,7 +29,7 @@ namespace GameResources
             }
         }
 
-        private int _armyCount;
+        [SerializeField] private int _armyCount;
         public int ArmyCount
         {
             get => _armyCount;
