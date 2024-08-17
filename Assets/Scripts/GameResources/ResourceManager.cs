@@ -1,14 +1,48 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameResources
 {
     public class ResourceManager: MonoBehaviour
     {
-        public int MoneyCount { get; private set; }
-        public int FoodCount { get; private set; }
-        public int ArmyCount { get; private set; }
+        private int _moneyCount;
+        public int MoneyCount
+        {
+            get => _moneyCount;
+            private set
+            {
+                _moneyCount = value;
+                onMoneyCountChanged.Invoke();
+            }
+        }
 
+        private int _foodCount;
+        public int FoodCount
+        {
+            get => _foodCount;
+            private set
+            {
+                _foodCount = value;
+                onFoodCountChanged.Invoke();
+            }
+        }
+
+        private int _armyCount;
+        public int ArmyCount
+        {
+            get => _armyCount;
+            private set
+            {
+                _armyCount = value;
+                onArmyCountChanged.Invoke();
+            }
+        }
+
+        public UnityEvent onMoneyCountChanged = new();
+        public UnityEvent onFoodCountChanged = new();
+        public UnityEvent onArmyCountChanged = new();
+        
         public void AddMoney(int count)
         {
             if (count < 0)
