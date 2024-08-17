@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -14,11 +15,16 @@ public class Mapdrawer : MonoBehaviour
     [SerializeField] private TileBase _ground;
     [SerializeField] private TileBase _river;
     [SerializeField] private TileBase _road;
+
+    [SerializeField] private TileBase _groundWinter;
+    [SerializeField] private TileBase _riverWinter;
+    [SerializeField] private TileBase _roadWinter;
+
     [SerializeField] private Tilemap _tilemap;
 
+    [FormerlySerializedAs("_spriteDecorations")]
     [Header("Map decorations")]
-    [SerializeField] private List<Sprite> _spriteDecorations;
-    [SerializeField] private GameObject _prefabDecoration;
+    [SerializeField] private List<GameObject> _decorations;
     [SerializeField] [Range(0,1)] private float _decorationProbability = 0.1f;
     [SerializeField] private LayerMask _decorationLayer;
 
@@ -26,6 +32,8 @@ public class Mapdrawer : MonoBehaviour
     [SerializeField] private float _houseAnimationDuration = 0.3f;
     [SerializeField] private AudioClip _houseAnimSound;
 
+    public Action SpringStarted;
+    public Action WinterStarted;
 
     private AudioSource _audioSource;
 
@@ -46,9 +54,23 @@ public class Mapdrawer : MonoBehaviour
 
             _tilemap.SetTile(new Vector3Int(i,j, 0), tile);
 
-            Debug.Log($"new tile at ({i},{j})");
-
         }
+    }
+
+    public void DrawWinter()
+    {
+        _tilemap.SwapTile(_river, _riverWinter);
+        _tilemap.SwapTile(_road, _roadWinter);
+        _tilemap.SwapTile(_ground, _groundWinter);
+        WinterStarted?.Invoke();
+    }
+
+    public void DrawSpring()
+    {
+        _tilemap.SwapTile(_riverWinter, _river);
+        _tilemap.SwapTile(_roadWinter, _road);
+        _tilemap.SwapTile(_groundWinter, _ground);
+        SpringStarted?.Invoke();
     }
 
     public static (float,float) ConvertCoord(float x, float y)
@@ -72,8 +94,12 @@ public class Mapdrawer : MonoBehaviour
 
         var (xTransformed, yTransformed) = ConvertCoord(xn, yn);
 
-        var go =Instantiate(_prefabDecoration, new Vector3(xTransformed,yTransformed,0), Quaternion.identity);
-        go.GetComponent<SpriteRenderer>().sprite = _spriteDecorations[Random.Range(0, _spriteDecorations.Count)];
+        var go =Instantiate(_decorations[Random.Range(0, _decorations.Count)], new Vector3(xTransformed,yTransformed,0), Quaternion.identity);
+        if (go.TryGetComponent(out TreeDecoration tree))
+        {
+            SpringStarted += tree.MakeInSpring;
+            WinterStarted += tree.MakeItWinter;
+        }
     }
 
     private void DeleteDecorationAt(int x, int y)
@@ -115,11 +141,12 @@ public class Mapdrawer : MonoBehaviour
     {
         foreach (var point in roadPoints)
         {
+
             _tilemap.SetTile((Vector3Int)point, _road);
         }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         _audioSource = GetComponent<AudioSource>();
     }

@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         var y = _hoisePositions.Select(it => it.y).Sum() / _hoisePositions.Count;
         _camera.transform.position = new Vector3(x, y, _camera.transform.position.z);
     }
+
     public void BuildHouse()
     {
         var pos = PopBuildPosition();
