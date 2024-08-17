@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Map = _generator.GenerateMap();
         _mapDrawer.Draw(Map);
+        //TODO: Проверять на речку на этой точке
         _allowedBuildPositions.Add(new Vector2Int(Map.GetLength(1) / 2, Map.GetLength(0) / 2));
         BuildHouse();
     }

@@ -67,7 +67,7 @@ MonoBehaviour:
   _decorationProbability: 0.1
   _decorationLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _houseAnimationDuration: 0.3
   _houseAnimSound: {fileID: 8300000, guid: f36589396163c5c4cb091979b35dd05c, type: 3}
 --- !u!114 &76909443060530055

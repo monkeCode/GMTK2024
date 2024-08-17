@@ -53,10 +53,12 @@ public class Mapdrawer : MonoBehaviour
 
     public static (float,float) ConvertCoord(float x, float y)
     {
-        var angle = Mathf.PI / 4;
+        float angle = Mathf.PI/4;
+        float cellSizeX = 0.94f;
+        float cellSizeY = 0.55f;
 
-        var xTransformed = (x * Mathf.Cos(angle) - y * Mathf.Sin(angle))* 0.707f;
-        var yTransformed = (x * Mathf.Sin(angle) + y * Mathf.Cos(angle))*0.353f + 0.5f;
+        var xTransformed = (x * Mathf.Cos(angle) - y * Mathf.Sin(angle))* cellSizeX/2/(Mathf.Cos(angle));
+        var yTransformed = (x * Mathf.Sin(angle) + y * Mathf.Cos(angle))* cellSizeY / (Mathf.Sin(angle)+ Mathf.Cos(angle));
         return (xTransformed, yTransformed);
     }
 
