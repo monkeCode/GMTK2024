@@ -1,8 +1,8 @@
 ﻿namespace Buildings
 {
-    public class FoodBuilding: BuildingBase
+    public class Farm: BuildingBase
     {
-        protected override int Income { get; set; } = 5;
+        protected override int Income { get; set; } = Constants.Buildings.FarmIncome;
         
         protected override void OnMouseDown()
         {

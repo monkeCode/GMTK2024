@@ -1,8 +1,8 @@
 ﻿namespace Buildings
 {
-    public class ArmyBuilding: BuildingBase
+    public class Tower: BuildingBase
     {
-        protected override int Income { get; set; } = 5;
+        protected override int Income { get; set; } = Constants.Buildings.TowerIncome;
 
         protected override void OnMouseDown()
         {
