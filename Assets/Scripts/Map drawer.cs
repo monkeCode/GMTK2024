@@ -146,7 +146,7 @@ public class Mapdrawer : MonoBehaviour
         }
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
     }
