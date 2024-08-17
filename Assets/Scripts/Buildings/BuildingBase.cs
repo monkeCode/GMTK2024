@@ -12,6 +12,7 @@ namespace Buildings
         [SerializeField] private GameObject bubble;
         [SerializeField] private int minResetTime = 4;
         [SerializeField] private int maxResetTime = 10;
+        [SerializeField] private AudioSource audioSource;
 
         private void Start()
         {
@@ -22,6 +23,7 @@ namespace Buildings
         protected virtual void OnMouseDown()
         {
             Debug.Log("click");
+            PlaySound();
             HideBubble();
         }
 
@@ -45,6 +47,11 @@ namespace Buildings
         private int GetBubbleResetTimeInSeconds()
         {
             return Random.Range(minResetTime, maxResetTime);
+        }
+
+        private void PlaySound()
+        {
+            audioSource.Play();
         }
     }
 }
