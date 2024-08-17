@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Resources
+namespace GameResources
 {
     public class ResourceManager: MonoBehaviour
     {
