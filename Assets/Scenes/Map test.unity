@@ -500,8 +500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58dc52aa9083b440b9261ec3a354004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generator: {fileID: 11400000, guid: 3b4d8030b45159a44851470c5b3cff2e, type: 2}
-  _mapDrawer: {fileID: 1002972456}
+  _generator: {fileID: 0}
+  _mapDrawer: {fileID: 0}
 --- !u!1 &1218743387
 GameObject:
   m_ObjectHideFlags: 0
