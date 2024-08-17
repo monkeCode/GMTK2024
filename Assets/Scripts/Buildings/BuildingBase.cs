@@ -9,7 +9,9 @@ namespace Buildings
         protected ResourceManager ResourceManager;
         protected virtual int Income { get; set; }
         
-        [SerializeField]private GameObject bubble;
+        [SerializeField] private GameObject bubble;
+        [SerializeField] private int minResetTime = 4;
+        [SerializeField] private int maxResetTime = 10;
 
         private void Start()
         {
@@ -42,7 +44,7 @@ namespace Buildings
 
         private int GetBubbleResetTimeInSeconds()
         {
-            return Random.Range(4, 10);
+            return Random.Range(minResetTime, maxResetTime);
         }
     }
 }
