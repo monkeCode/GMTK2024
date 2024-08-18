@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace;
 using Models;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,6 @@ namespace GameResources
     public class ResourceManager: MonoBehaviour
     {
        [SerializeField] private int _moneyCount;
-       public bool BookkeepingMistakeEventFlag;
         public int MoneyCount
         {
             get => _moneyCount;
@@ -53,7 +53,7 @@ namespace GameResources
                 throw new ArgumentOutOfRangeException(nameof(count), count, "Value can't be < 0");
             }
 
-            if (BookkeepingMistakeEventFlag && BookkeepingEventActionResult(TrySpendMoney, count))
+            if (Flags.BookkeepingMistakeEventFlag && BookkeepingEventActionResult(TrySpendMoney, count))
                 return;
 
             MoneyCount += count;

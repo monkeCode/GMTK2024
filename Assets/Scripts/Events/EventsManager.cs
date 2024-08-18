@@ -14,10 +14,11 @@ namespace Events
         {
             events = new List<EventBase>
             {
-                gameObject.AddComponent<WarEvent>(),
-                gameObject.AddComponent<FestivalEvent>(),
-                gameObject.AddComponent<BookkeepingMistakeEvent>(),
-                gameObject.AddComponent<DayOfTheDayEvent>()
+                gameObject.AddComponent<WarEvent>(), // Можно на другие ресурсы дополнить/скопипастить
+                gameObject.AddComponent<FestivalEvent>(), // Можно на другие ресурсы дополнить/скопипастить
+                gameObject.AddComponent<BookkeepingMistakeEvent>(), // Можно на другие ресурсы дополнить/скопипастить
+                gameObject.AddComponent<DayOfTheDayEvent>(),
+                gameObject.AddComponent<DigitalRomanReformEvent>()
             };
             StartCoroutine(EventsCoroutine());
         }
@@ -27,6 +28,7 @@ namespace Events
             while (true)
             {
                 yield return new WaitForSeconds(GetNextEventDelay());
+                Debug.Log("Start event");
                 events[Random.Range(0, events.Count)].StartEvent();
             }
         }

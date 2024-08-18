@@ -1,4 +1,5 @@
-﻿using GameResources;
+﻿using DefaultNamespace;
+using GameResources;
 using UnityEngine;
 
 namespace Events
@@ -13,18 +14,16 @@ namespace Events
 
         protected override Sprite Image => null; //TODO: пикчу найти
 
-        private ResourceManager resourceManager;
-
         public override void StartEvent(int eventDurationInSeconds)
         {
             base.StartEvent(eventDurationInSeconds);
-            resourceManager = FindObjectOfType<ResourceManager>();
-            resourceManager.BookkeepingMistakeEventFlag = true;
+            Flags.BookkeepingMistakeEventFlag = true;
         }
         
         protected override void EndEvent()
         {
-            resourceManager.BookkeepingMistakeEventFlag = false;
+            base.EndEvent();
+            Flags.BookkeepingMistakeEventFlag = false;
         }
     }
 }
