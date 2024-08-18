@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace Events
@@ -9,11 +7,31 @@ namespace Events
     public class EventsManager : MonoBehaviour
     {
         [SerializeField] private List<EventBase> events;
+        [SerializeField] private int MinEventDelayInSeconds = 30;
+        [SerializeField] private int MaxEventDelayInSeconds = 120;
 
         private void Start()
         {
-            events = new List<EventBase> { gameObject.AddComponent<WarEvent>() };
-            events[0].StartEvent(20);
+            events = new List<EventBase>
+            {
+                gameObject.AddComponent<WarEvent>(),
+                gameObject.AddComponent<FestivalEvent>()
+            };
+            StartCoroutine(EventsCoroutine());
+        }
+
+        private IEnumerator EventsCoroutine()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(GetNextEventDelay());
+                events[Random.Range(0, events.Count)].StartEvent(20);
+            }
+        }
+
+        private float GetNextEventDelay()
+        {
+            return Random.Range(MinEventDelayInSeconds, MaxEventDelayInSeconds);
         }
     }
 
