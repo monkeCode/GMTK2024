@@ -1,5 +1,7 @@
 ﻿using System;
+using Buildings;
 using DefaultNamespace;
+using GameResources;
 using UI.BuildInfo;
 using UI.ResourcesInfo;
 using UnityEngine;
@@ -16,8 +18,15 @@ namespace Events
         public override void StartEvent(int eventDurationInSeconds)
         {
             base.StartEvent(eventDurationInSeconds);
-
             Flags.DigitalRomanReformFlag = true;
+            var resourceManager = FindObjectOfType<ResourceManager>();
+            var buildController = FindObjectOfType<BuildController>();
+            resourceManager.onArmyCountChanged.Invoke();
+            resourceManager.onFoodCountChanged.Invoke();
+            resourceManager.onMoneyCountChanged.Invoke();
+            buildController.onFarmPriceChangedEvent.Invoke();
+            buildController.onHousePriceChangedEvent.Invoke();
+            buildController.onTowerPriceChangedEvent.Invoke();
         }
 
         protected override void EndEvent()
