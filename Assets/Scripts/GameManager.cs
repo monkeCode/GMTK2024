@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     {
         var pos = PopBuildPosition();
         _mapDrawer.DrawHouse(testHome, pos.x, pos.y);
+        _allowedBuildPositions.Remove(pos);
         var convPos = Mapdrawer.ConvertCoord(pos.x, pos.y);
         _hoisePositions.Add(new Vector2(convPos.Item1, convPos.Item2 ));
         CenterCamera();
