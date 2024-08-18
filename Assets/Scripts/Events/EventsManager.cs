@@ -21,7 +21,8 @@ namespace Events
                 gameObject.AddComponent<DayOfTheDayEvent>(),
                 gameObject.AddComponent<DigitalRomanReformEvent>(),
                 gameObject.AddComponent<TaxEvasionEvent>(), // Можно чутарика поменять BuildingBase и приватность баблов и сделать на разные ресурсы отдельно
-                gameObject.AddComponent<SusEvent>() // Хз как оно в браузере будет работать, мб придется убрать
+                gameObject.AddComponent<SusEvent>(), // Хз как оно в браузере будет работать, мб придется убрать
+                gameObject.AddComponent<HamsterEvent>()
             };
             StartCoroutine(EventsCoroutine());
         }
