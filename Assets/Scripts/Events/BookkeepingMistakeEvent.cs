@@ -11,7 +11,7 @@ namespace Events
         protected override string Description =>
             "Our bookkeeper got drunk last night and made a few mistakes. Now instead of getting taxes from people, we might have to pay some of them";
 
-        protected override Sprite Image => null;
+        protected override Sprite Image => null; //TODO: пикчу найти
 
         private ResourceManager resourceManager;
 
