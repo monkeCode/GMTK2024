@@ -57,7 +57,6 @@ namespace Buildings
             if(_resourceManager.TrySpendResources(HousePrice))
             {
                 GameManager.Instance.BuildHouse();
-                //TODO: Build
                 HousePrice = UpdatePrice(HousePrice);
             }
         }
@@ -66,7 +65,7 @@ namespace Buildings
         {
             if(_resourceManager.TrySpendResources(FarmPrice))
             {
-                //TODO: Build
+                GameManager.Instance.BuildMill();
                 FarmPrice = UpdatePrice(FarmPrice);
             }
         }
@@ -75,7 +74,7 @@ namespace Buildings
         {
             if(_resourceManager.TrySpendResources(TowerPrice))
             {
-                //TODO: Build
+                GameManager.Instance.BuildTower();
                 TowerPrice = UpdatePrice(TowerPrice);
             }
         }

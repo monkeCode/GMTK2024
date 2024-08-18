@@ -80,7 +80,7 @@ public class Mapdrawer : MonoBehaviour
         float cellSizeY = 0.55f;
 
         var xTransformed = (x * Mathf.Cos(angle) - y * Mathf.Sin(angle))* cellSizeX/2/(Mathf.Cos(angle));
-        var yTransformed = (x * Mathf.Sin(angle) + y * Mathf.Cos(angle))* cellSizeY / (Mathf.Sin(angle)+ Mathf.Cos(angle));
+        var yTransformed = (x * Mathf.Sin(angle) + y * Mathf.Cos(angle))* cellSizeY / (Mathf.Sin(angle)+ Mathf.Cos(angle)) + 0.5f;
         return (xTransformed, yTransformed);
     }
 
@@ -141,7 +141,7 @@ public class Mapdrawer : MonoBehaviour
     {
         foreach (var point in roadPoints)
         {
-
+            _tilemap.SetTile((Vector3Int)point, null);
             _tilemap.SetTile((Vector3Int)point, _road);
         }
     }

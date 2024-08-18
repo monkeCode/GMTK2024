@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using GameResources;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Buildings
 {
@@ -14,10 +16,12 @@ namespace Buildings
         [SerializeField] private int maxResetTime = 10;
         [SerializeField] private AudioSource audioSource;
 
+        private SpriteRenderer _renderer;
         private void Start()
         {
             ResourceManager = FindObjectOfType<ResourceManager>();
             StartCoroutine(BubbleCoroutine(GetBubbleResetTimeInSeconds()));
+            _renderer = GetComponent<SpriteRenderer>();
         }
         
         protected virtual void OnMouseDown()
@@ -52,6 +56,11 @@ namespace Buildings
         private void PlaySound()
         {
             audioSource.Play();
+        }
+
+        private void Update()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         }
     }
 }
