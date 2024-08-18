@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Events
@@ -18,7 +19,8 @@ namespace Events
                 gameObject.AddComponent<FestivalEvent>(), // Можно на другие ресурсы дополнить/скопипастить
                 gameObject.AddComponent<BookkeepingMistakeEvent>(), // Можно на другие ресурсы дополнить/скопипастить
                 gameObject.AddComponent<DayOfTheDayEvent>(),
-                gameObject.AddComponent<DigitalRomanReformEvent>()
+                gameObject.AddComponent<DigitalRomanReformEvent>(),
+                gameObject.AddComponent<TaxEvasionEvent>() // Можно чутарика поменять BuildingBase и приватность баблов и сделать на разные ресурсы отдельно
             };
             StartCoroutine(EventsCoroutine());
         }
