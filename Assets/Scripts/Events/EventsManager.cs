@@ -22,7 +22,8 @@ namespace Events
                 gameObject.AddComponent<DigitalRomanReformEvent>(),
                 gameObject.AddComponent<TaxEvasionEvent>(), // Можно чутарика поменять BuildingBase и приватность баблов и сделать на разные ресурсы отдельно
                 gameObject.AddComponent<SusEvent>(), // Хз как оно в браузере будет работать, мб придется убрать
-                gameObject.AddComponent<HamsterEvent>()
+                gameObject.AddComponent<HamsterEvent>(),
+                gameObject.AddComponent<WinterEvent>()
             };
             StartCoroutine(EventsCoroutine());
         }
@@ -33,7 +34,7 @@ namespace Events
             {
                 yield return new WaitForSeconds(GetNextEventDelay());
                 Debug.Log("Start event");
-                events[7].StartEvent();
+                events[8].StartEvent();
             }
         }
 

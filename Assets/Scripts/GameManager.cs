@@ -214,4 +214,14 @@ public class GameManager : MonoBehaviour
         _mapDrawer.DrawRoad(roads);
     }
 
+    public void StartWinter()
+    {
+        _mapDrawer.DrawWinter();
+    }
+
+    public void EndWinter()
+    {
+        _mapDrawer.DrawSpring();
+    }
+
 }
