@@ -14,25 +14,35 @@ namespace Events
         protected override string Headline => "DIGITAL REFORM";
         protected override string Description => "Have you thought about Roman Empire today? Our bookkeepers thought and released roman digital reform";
         protected override Sprite Image => null; //TODO: пикчу добавить
+        private ResourceManager resourceManager;
+        private BuildController buildController;
+        
 
         public override void StartEvent(int eventDurationInSeconds)
         {
             base.StartEvent(eventDurationInSeconds);
             Flags.DigitalRomanReformFlag = true;
-            var resourceManager = FindObjectOfType<ResourceManager>();
-            var buildController = FindObjectOfType<BuildController>();
-            resourceManager.onArmyCountChanged.Invoke();
-            resourceManager.onFoodCountChanged.Invoke();
-            resourceManager.onMoneyCountChanged.Invoke();
-            buildController.onFarmPriceChangedEvent.Invoke();
-            buildController.onHousePriceChangedEvent.Invoke();
-            buildController.onTowerPriceChangedEvent.Invoke();
+            resourceManager = FindObjectOfType<ResourceManager>();
+            buildController = FindObjectOfType<BuildController>();
+            UpdateCurrentValues();
+
         }
 
         protected override void EndEvent()
         {
             base.EndEvent();
             Flags.DigitalRomanReformFlag = false;
+            UpdateCurrentValues();
+        }
+
+        private void UpdateCurrentValues()
+        {
+            resourceManager.onArmyCountChanged.Invoke();
+            resourceManager.onFoodCountChanged.Invoke();
+            resourceManager.onMoneyCountChanged.Invoke();
+            buildController.onFarmPriceChangedEvent.Invoke();
+            buildController.onHousePriceChangedEvent.Invoke();
+            buildController.onTowerPriceChangedEvent.Invoke();
         }
 
         public static string ToRoman(int number)
