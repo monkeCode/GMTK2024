@@ -25,7 +25,7 @@ namespace Events
             while (true)
             {
                 yield return new WaitForSeconds(GetNextEventDelay());
-                events[Random.Range(0, events.Count)].StartEvent(20);
+                events[Random.Range(0, events.Count)].StartEvent();
             }
         }
 

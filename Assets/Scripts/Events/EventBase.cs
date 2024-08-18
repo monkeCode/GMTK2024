@@ -6,6 +6,7 @@ namespace Events
     public abstract class EventBase : MonoBehaviour
     {
         private EventDescriptionController eventDescriptionController;
+        protected abstract int baseEventDurationInSeconds { get; }
         protected abstract string Headline { get; }
         protected abstract string Description { get; }
         protected abstract Sprite Image { get; }
@@ -13,6 +14,11 @@ namespace Events
         private void Awake()
         {
             eventDescriptionController = FindObjectOfType<EventDescriptionController>();
+        }
+
+        public virtual void StartEvent()
+        {
+            StartEvent(baseEventDurationInSeconds);
         }
 
         public virtual void StartEvent(int eventDurationInSeconds)
