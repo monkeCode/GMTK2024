@@ -6,7 +6,7 @@ namespace Events
     public abstract class EventBase : MonoBehaviour
     {
         private EventDescriptionController eventDescriptionController;
-        protected abstract int baseEventDurationInSeconds { get; }
+        protected abstract int BaseEventDurationInSeconds { get; }
         protected abstract string Headline { get; }
         protected abstract string Description { get; }
         protected abstract Sprite Image { get; }
@@ -16,9 +16,9 @@ namespace Events
             eventDescriptionController = FindObjectOfType<EventDescriptionController>();
         }
 
-        public virtual void StartEvent()
+        public void StartEvent()
         {
-            StartEvent(baseEventDurationInSeconds);
+            StartEvent(BaseEventDurationInSeconds);
         }
 
         public virtual void StartEvent(int eventDurationInSeconds)
@@ -32,7 +32,10 @@ namespace Events
             yield return new WaitForSeconds(eventDurationInSeconds);
             EndEvent();
         }
-        
-        protected abstract void EndEvent();
+
+        protected virtual void EndEvent()
+        {
+            
+        }
     }
 }

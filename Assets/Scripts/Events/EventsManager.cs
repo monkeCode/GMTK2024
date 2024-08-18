@@ -15,7 +15,8 @@ namespace Events
             events = new List<EventBase>
             {
                 gameObject.AddComponent<WarEvent>(),
-                gameObject.AddComponent<FestivalEvent>()
+                gameObject.AddComponent<FestivalEvent>(),
+                gameObject.AddComponent<BookkeepingMistakeEvent>()
             };
             StartCoroutine(EventsCoroutine());
         }
