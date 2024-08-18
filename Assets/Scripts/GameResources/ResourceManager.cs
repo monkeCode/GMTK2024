@@ -1,7 +1,9 @@
 ﻿using System;
+using DefaultNamespace;
 using Models;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace GameResources
 {
@@ -50,7 +52,10 @@ namespace GameResources
             {
                 throw new ArgumentOutOfRangeException(nameof(count), count, "Value can't be < 0");
             }
-            
+
+            if (Flags.BookkeepingMistakeEventFlag && BookkeepingEventActionResult(TrySpendMoney, count))
+                return;
+
             MoneyCount += count;
         }
 
@@ -133,6 +138,17 @@ namespace GameResources
             FoodCount -= price.FoodPrice;
             ArmyCount -= price.ArmyPrice;
             return true;
+        }
+
+        private bool BookkeepingEventActionResult(Func<int, bool> action, int count)
+        {
+            if (Random.value > 0.6)
+            {
+                action(count);
+                return true;
+            }
+            return false;
+
         }
     }
 }

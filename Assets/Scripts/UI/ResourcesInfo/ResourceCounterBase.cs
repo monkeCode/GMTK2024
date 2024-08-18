@@ -1,4 +1,6 @@
-﻿using GameResources;
+﻿using DefaultNamespace;
+using Events;
+using GameResources;
 using TMPro;
 using UnityEngine;
 
@@ -17,7 +19,9 @@ namespace UI.ResourcesInfo
 
         protected void SetCount(int value)
         {
-            text.text = value.ToString();
+            text.text = Flags.DigitalRomanReformFlag
+                ? DigitalRomanReformEvent.ToRoman(value)
+                : value.ToString();
         }
     }
 }

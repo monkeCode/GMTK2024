@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
+using DefaultNamespace;
 using GameResources;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 namespace Buildings
 {
@@ -12,16 +12,16 @@ namespace Buildings
         protected virtual int Income { get; set; }
         
         [SerializeField] private GameObject bubble;
+        private GameObject bubbleImage;
         [SerializeField] private int minResetTime = 4;
         [SerializeField] private int maxResetTime = 10;
         [SerializeField] private AudioSource audioSource;
 
-        private SpriteRenderer _renderer;
         private void Start()
         {
             ResourceManager = FindObjectOfType<ResourceManager>();
+            bubbleImage = bubble.GetComponentInChildren<Image>().gameObject;
             StartCoroutine(BubbleCoroutine(GetBubbleResetTimeInSeconds()));
-            _renderer = GetComponent<SpriteRenderer>();
         }
         
         protected virtual void OnMouseDown()
@@ -34,6 +34,10 @@ namespace Buildings
         private void ShowBubble()
         {
             bubble.SetActive(true);
+            if (Flags.TaxEvasionEventFlag && Random.value > 0.6)
+                bubbleImage.SetActive(false);
+            else
+                bubbleImage.SetActive(true);
         }
 
         private void HideBubble()

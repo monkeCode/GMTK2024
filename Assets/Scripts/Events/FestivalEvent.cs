@@ -5,6 +5,7 @@ namespace Events
 {
     public class FestivalEvent: EventBase
     {
+        protected override int BaseEventDurationInSeconds => 0;
         protected override string Headline => "FESTIVAL!";
 
         protected override string Description =>

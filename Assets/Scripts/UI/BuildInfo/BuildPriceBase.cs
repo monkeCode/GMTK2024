@@ -1,8 +1,11 @@
 ﻿using Buildings;
+using DefaultNamespace;
+using Events;
 using JetBrains.Annotations;
 using Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace UI.BuildInfo
 {
@@ -22,18 +25,25 @@ namespace UI.BuildInfo
         {
             if (moneyPrice != null)
             {
-                moneyPrice.text = price.MoneyPrice.ToString();
+                moneyPrice.text = ToString(price.MoneyPrice);
             }
 
             if (foodPrice != null)
             {
-                foodPrice.text = price.FoodPrice.ToString();
+                foodPrice.text = ToString(price.FoodPrice);
             }
 
             if (armyPrice != null)
             {
-                armyPrice.text = price.ArmyPrice.ToString();
+                armyPrice.text = ToString(price.ArmyPrice);
             }
+        }
+
+        private string ToString(int price)
+        {
+            return Flags.DigitalRomanReformFlag
+                ? DigitalRomanReformEvent.ToRoman(price)
+                : price.ToString();
         }
     }
 }
