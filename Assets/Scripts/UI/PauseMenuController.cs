@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class PauseMenuController : MonoBehaviour
     {
         [SerializeField] private GameObject pauseMenu;
+
+        [SerializeField] private Slider _sfxSlider;
+        [SerializeField] private Slider _musicSlider;
+        [SerializeField] private AudioMixer _musicMixer;
 
         private void Update()
         {
@@ -48,5 +54,16 @@ namespace UI
                 }
             }
         }
+
+        public void onSfxChanged()
+        {
+            _musicMixer.SetFloat("sfxVol", _sfxSlider.value*80-80);
+        }
+
+        public void onMusicChanged()
+        {
+            _musicMixer.SetFloat("musicVol", _musicSlider.value*80-80);
+        }
+
     }
 }

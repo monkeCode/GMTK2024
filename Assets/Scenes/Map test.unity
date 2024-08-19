@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2123322005581937836, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2739648075484288394, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -616,6 +620,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424631758585224525, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5129408142878657204, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5355618485979278468, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
@@ -684,6 +692,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6299698598797126152, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324045357427044574, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480976719644082472, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
@@ -840,6 +852,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7863501941321225600, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950548977639058783, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159455679389862347, guid: fc542cd22d07c6842bd50226f3ac6afd, type: 3}
@@ -1375,10 +1391,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8443667924797676639, guid: c742c952c5ad285428ed28bbcfdddc77, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: b5322457e9c005d46a00c089e5edbe89, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
