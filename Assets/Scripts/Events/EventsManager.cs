@@ -34,7 +34,7 @@ namespace Events
             {
                 yield return new WaitForSeconds(GetNextEventDelay());
                 Debug.Log("Start event");
-                events[8].StartEvent();
+                events[Random.Range(0, events.Count)].StartEvent();
             }
         }
 

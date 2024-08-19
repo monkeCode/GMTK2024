@@ -29,6 +29,11 @@ namespace UI
             pauseMenu.SetActive(false);
         }
 
+        public void Restart()
+        {
+            SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
+        }
+
         private void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

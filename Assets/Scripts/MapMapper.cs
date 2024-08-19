@@ -5,14 +5,23 @@ using Random = UnityEngine.Random;
 
 public class MapMapper
 {
+
+    private const float  SplitProbability = 0.5f;
+
     private static List<Square> SquareSqlit(Square square)
     {
        if (square.Height < 1 || square.Width < 1)
            throw new ArithmeticException($"h {square.Height}, w {square.Width}");
-       if (square.Height < 4 || square.Width < 4)
+
+       if (square.Height <= 3 && square.Width <= 3)
+       {
+           return new List<Square>() { square };
+       }
+
+       if ((square.Height <=2 || square.Width <=2 ) && Random.value > SplitProbability)
            return new List<Square>() { square };
 
-       bool horizontal = (Random.Range(0, 2) == 1) && square.Height > 3;
+       bool horizontal = ((Random.Range(0, 2) == 1) || square.Height < 4) && square.Width > 3;
 
        if (horizontal)
        {

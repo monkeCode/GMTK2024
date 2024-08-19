@@ -62,7 +62,7 @@ namespace Buildings
             audioSource.Play();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         }

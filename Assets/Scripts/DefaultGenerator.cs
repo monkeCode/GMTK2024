@@ -6,10 +6,9 @@ using Random = UnityEngine.Random;
 public class DefaultGenerator : Generator
 {
 
-    [SerializeField] private float _riverScale = 10;
+    [SerializeField] private int _riversCount=2;
 
-    [SerializeField] [Range(0,1)] private float _riverMax = 0.5f;
-    [SerializeField] [Range(0,1)] private float _riverMin = 0.4f;
+    [SerializeField] private float _dodgeProbability = 0.3f;
 
     public override CellType[,] GenerateMap()
     {
@@ -18,10 +17,10 @@ public class DefaultGenerator : Generator
         return map;
     }
 
-    private static void GenerateRiverMap(CellType[,] map)
+    private void GenerateRiverMap(CellType[,] map)
     {
-
-        for (int i = 0; i < 4; i++)
+        int lastDirection = 0;
+        for (int i = 0; i < _riversCount ; i++)
         {
             bool fromUp = Random.Range(0, 2) == 1;
             int startX=Random.Range(0, map.GetLength(0));
@@ -34,24 +33,21 @@ public class DefaultGenerator : Generator
                 else
                     map[startX, startY] = CellType.River;
 
-                int direction = Random.Range(0, 4);
-                if (direction == 0 && startX > 0) startX--;
-                else if (direction == 1 && startX < map.GetLength(1) - 1) startX++;
-                else startY++;
-            }
-        }
-    }
 
-    private void GenerateRivers(CellType[,] map)
-    {
-        var offsetX = Random.value * 1000;
-        var offsetY = Random.value* 1000;
-        for(int i =0; i < map.GetLength(0); i++)
-        for (int j = 0; j < map.GetLength(1); j++)
-        {
-            var p  = Mathf.PerlinNoise(i/(float)map.GetLength(0)*_riverScale + offsetX, j/(float)map.GetLength(1)*_riverScale+offsetY);
-            if (p >= _riverMin && p <= _riverMax)
-                map[i, j] = CellType.River;
+                int direction = Random.value > _dodgeProbability  ? lastDirection : Random.Range(0, 3);
+
+                if (direction == 0 && startX > 0 && lastDirection != 1)
+                    startX--;
+                else if (direction == 1 && startX < map.GetLength(1) - 1 && lastDirection != 0)
+                    startX++;
+                else
+                {
+                    startY++;
+                    direction = 2;
+                }
+
+                lastDirection = direction;
+            }
         }
     }
 }

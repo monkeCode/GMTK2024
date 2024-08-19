@@ -14,13 +14,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Mapdrawer _mapDrawer;
 
-    [SerializeField] private GameObject _housePrefab;
-    [SerializeField] private GameObject _millPrefab;
-    [SerializeField] private GameObject _towerPrefab;
+    [SerializeField] private List<GameObject> _housePrefabs;
+    [SerializeField] private List<GameObject> _millPrefabs;
+    [SerializeField] private List<GameObject> _towerPrefabs;
+    [SerializeField] private List<GameObject> _fieldPrefabs;
 
-    private HashSet<Vector2Int> _allowedBuildPositions = new HashSet<Vector2Int>();
-    private HashSet<Vector2Int> _closestBuildPositions = new HashSet<Vector2Int>();
-    private HashSet<Vector2Int> _allowedRoadPositions = new HashSet<Vector2Int>();
+    private HashSet<Vector2Int> _allowedBuildPositions = new();
+    private HashSet<Vector2Int> _closestBuildPositions = new();
+    private HashSet<Vector2Int> _allowedRoadPositions = new();
 
     public static GameManager Instance { get; private set; }
 
@@ -39,8 +40,14 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
         _camera = Camera.main;
+    }
+
+
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
     void Start()
@@ -50,7 +57,6 @@ public class GameManager : MonoBehaviour
          (_allowedBuildPositions, _allowedRoadPositions) = MapMapper.GetHousesAndRoads(Map.GetLength(1), Map.GetLength(0));
         //_mapDrawer.DrawRoad(_allowedRoadPositions);
         BuildStartHouses();
-       // BuildHouse();
     }
 
     void BuildStartHouses()
@@ -77,9 +83,9 @@ public class GameManager : MonoBehaviour
         _closestBuildPositions.Remove(point);
         Map[point.x, point.y] = CellType.House;
 
-        for (int x = Mathf.Max(point.x - 2, 0); x < Mathf.Min(point.x + 2, Map.GetLength(0)); x++)
+        for (int x = Mathf.Max(point.x - 2, 0); x < Mathf.Min(point.x + 3, Map.GetLength(0)); x++)
         {
-            for (int y = Mathf.Max(point.y - 2, 0); y < Mathf.Min(point.y + 2, Map.GetLength(1)); y++)
+            for (int y = Mathf.Max(point.y - 2, 0); y < Mathf.Min(point.y + 3, Map.GetLength(1)); y++)
             {
                 var vec = new Vector2Int(x, y);
                 if (_allowedBuildPositions.Contains(vec) && Map[x,y] == CellType.Empty)
@@ -100,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     public Vector2Int BuildHouse()
     {
-        return BuildSmth(_housePrefab);
+        return BuildSmth(_housePrefabs[Random.Range(0, _housePrefabs.Count)]);
     }
 
     private Vector2Int BuildSmth(GameObject prefab)
@@ -116,12 +122,12 @@ public class GameManager : MonoBehaviour
 
     public Vector2Int BuildTower()
     {
-        return BuildSmth(_towerPrefab);
+        return BuildSmth(_towerPrefabs[Random.Range(0, _towerPrefabs.Count)]);
     }
 
     public Vector2Int BuildMill()
     {
-        return BuildSmth(_millPrefab);
+        return BuildSmth(_millPrefabs[Random.Range(0, _millPrefabs.Count)]);
     }
 
     class RoadNode
@@ -133,22 +139,24 @@ public class GameManager : MonoBehaviour
     private void BuildRoads(Vector2Int fromPoint)
     {
          var startRoadPoint = fromPoint;
-         if (startRoadPoint.x > 0 && _allowedRoadPositions.Contains(new Vector2Int(fromPoint.x - 1, fromPoint.y)))
-         {
-             startRoadPoint.x -= 1;
-         }
-         else if ((startRoadPoint.x < Map.GetLength(0)-1) && _allowedRoadPositions.Contains(new Vector2Int(fromPoint.x + 1, fromPoint.y)))
 
+         for (int x = Mathf.Max(fromPoint.x - 1, 0); x < Mathf.Min(fromPoint.x + 2, Map.GetLength(0)); x++)
          {
-             startRoadPoint.x += 1;
-         }
-         else if (startRoadPoint.y > 0 && _allowedRoadPositions.Contains(new Vector2Int(fromPoint.x, fromPoint.y-1)))
-         {
-             startRoadPoint.y -= 1;
-         }
-         else if ((startRoadPoint.y < Map.GetLength(1)-1) && _allowedRoadPositions.Contains(new Vector2Int(fromPoint.x, fromPoint.y+1)))
-         {
-             startRoadPoint.y += 1;
+             for (int y = Mathf.Max(fromPoint.y - 1, 0); y < Mathf.Min(fromPoint.y + 2, Map.GetLength(1)); y++)
+             {
+
+                 if(Mathf.Abs(x-fromPoint.x) == Mathf.Abs(y- fromPoint.y))
+                     continue;
+
+                 if(Map[x,y] == CellType.Road)
+                     return;
+
+                 if (_allowedRoadPositions.Contains(new Vector2Int(x, y)))
+                 {
+                     startRoadPoint = new Vector2Int(x, y);
+                     break;
+                 }
+             }
          }
 
          if(startRoadPoint == fromPoint)
@@ -157,13 +165,22 @@ public class GameManager : MonoBehaviour
          if (!_allowedRoadPositions.Remove(startRoadPoint))
              throw new Exception("Incorrect start point");
 
+         if (Map[startRoadPoint.x, startRoadPoint.y] == CellType.River)
+         {
+             _mapDrawer.DrawBridge(startRoadPoint.x, startRoadPoint.y, Map);
+         }
+         else
+         {
+             _mapDrawer.DrawRoad(new List<Vector2Int>(){startRoadPoint});
+         }
          Map[startRoadPoint.x, startRoadPoint.y] = CellType.Road;
-        _mapDrawer.DrawRoad(new List<Vector2Int>(){startRoadPoint});
+
          var start = new RoadNode() { Position = startRoadPoint, Last = null };
          var roadsPoints = new HashSet<Vector2Int>(_allowedRoadPositions);
          Queue<RoadNode> nodes = new Queue<RoadNode>();
          nodes.Enqueue(start);
          RoadNode end = null;
+
          while (nodes.Count > 0 && end == null)
          {
              var n = nodes.Dequeue();
@@ -188,9 +205,7 @@ public class GameManager : MonoBehaviour
                      {
                          var r = new RoadNode() { Position = new Vector2Int(x, y), Last = n };
                          nodes.Enqueue(r);
-
                      }
-
                  }
              }
          }
@@ -199,10 +214,17 @@ public class GameManager : MonoBehaviour
              return;
 
          HashSet<Vector2Int> roads = new HashSet<Vector2Int>();
-         roads.Add(startRoadPoint);
+         //roads.Add(startRoadPoint);
          while (end.Last != null)
          {
-             roads.Add(end.Position);
+
+             if (Map[end.Position.x, end.Position.y] == CellType.River)
+             {
+                 _mapDrawer.DrawBridge(end.Position.x, end.Position.y, Map);
+             }
+             else
+                 roads.Add(end.Position);
+
              Map[end.Position.x, end.Position.y] = CellType.Road;
              if (!_allowedRoadPositions.Remove(new Vector2Int(end.Position.x, end.Position.y)))
              {
@@ -211,7 +233,7 @@ public class GameManager : MonoBehaviour
              end = end.Last;
          }
 
-        _mapDrawer.DrawRoad(roads);
+         _mapDrawer.DrawRoad(roads);
     }
 
     public void StartWinter()

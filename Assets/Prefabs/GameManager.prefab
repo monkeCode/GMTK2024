@@ -83,7 +83,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _generator: {fileID: 11400000, guid: 3b4d8030b45159a44851470c5b3cff2e, type: 2}
   _mapDrawer: {fileID: 881306408141820916}
-  testHome: {fileID: 4075910526289939830, guid: 877a170fb14bbe84fa9f1e8d4d92a716, type: 3}
+  _housePrefabs:
+  - {fileID: 4075910526289939830, guid: 877a170fb14bbe84fa9f1e8d4d92a716, type: 3}
+  - {fileID: 4075910526289939830, guid: a9d468416cda3a74f8e0dd384fe859b8, type: 3}
+  - {fileID: 4075910526289939830, guid: 1fca85db0f0011a4dbca17c44fbbef18, type: 3}
+  - {fileID: 4075910526289939830, guid: a29b5cab734cd5643b9bab9f885e29fb, type: 3}
+  - {fileID: 4075910526289939830, guid: 0054af01eb2e55348a59afdd75b4346d, type: 3}
+  - {fileID: 4075910526289939830, guid: c7be808e8c5b02a4eb4b2ccc40408cf8, type: 3}
+  - {fileID: 4075910526289939830, guid: ce2b03a6e47509242a6a2268e42be43b, type: 3}
+  - {fileID: 4075910526289939830, guid: a5c87bc2c128e1d4d8ba3d1d08886aff, type: 3}
+  - {fileID: 4075910526289939830, guid: 904becd8e31460b4bb84857ae4cbc960, type: 3}
+  - {fileID: 4075910526289939830, guid: 9e9b05886fd09ca48a7ddc1314f7c43a, type: 3}
+  - {fileID: 4075910526289939830, guid: b21d541b93b39df48b0c576d1350665b, type: 3}
+  - {fileID: 4075910526289939830, guid: d0741d84a42da3241864bd5005273e64, type: 3}
+  - {fileID: 4075910526289939830, guid: 246694540de398945a0c960e66a1c643, type: 3}
+  - {fileID: 4075910526289939830, guid: d1c140b86f48d4744a7549abb78f0069, type: 3}
+  - {fileID: 4075910526289939830, guid: d7520ef643ce011409a9281baba4c9b7, type: 3}
+  - {fileID: 4075910526289939830, guid: a472de4c44c151b47921525087bd5e82, type: 3}
+  _millPrefabs:
+  - {fileID: 7627932752964052390, guid: 5f301925e38a3344ea3e6a9ce7f134b1, type: 3}
+  - {fileID: 7627932752964052390, guid: fc8732c6d6203ab4ea886d1e8143a67a, type: 3}
+  - {fileID: 7627932752964052390, guid: b0f5953ade733c845bbe66aac8e5f195, type: 3}
+  - {fileID: 7627932752964052390, guid: 88994dcf5d3d39b4abd9748b1d779c61, type: 3}
+  _towerPrefabs:
+  - {fileID: 1048155406631184243, guid: 7246118dae81fbc43896d3c79a400356, type: 3}
+  - {fileID: 1048155406631184243, guid: 982f9069ed3c2cf4e81120a0b1af7e8d, type: 3}
+  - {fileID: 1048155406631184243, guid: 8d2fe91fd347a7f47b308c622d513ee0, type: 3}
+  - {fileID: 1048155406631184243, guid: 3dca1348ab63f6c4aa135e449a169fbd, type: 3}
+  _fieldPrefabs:
+  - {fileID: 4049784575009226491, guid: 69c713356dafe51409593c3258a5d9f8, type: 3}
+  - {fileID: 2029725970649860255, guid: 1fc0976fe6440fd4eacc38cd7c646ce1, type: 3}
 --- !u!82 &8443667924797676639
 AudioSource:
   m_ObjectHideFlags: 0

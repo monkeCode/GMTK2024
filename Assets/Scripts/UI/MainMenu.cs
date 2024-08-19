@@ -8,7 +8,7 @@ namespace UI
     
         public void StartGame()
         {
-            SceneManager.LoadScene("BuildingDemo");
+            SceneManager.LoadScene("Map test");
         }
 
         public void QuitGame()

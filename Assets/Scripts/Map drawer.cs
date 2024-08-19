@@ -150,6 +150,11 @@ public class Mapdrawer : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
     }
+
+    public void DrawBridge(int positionX, int positionY, CellType[,] map)
+    {
+        // new NotImplementedException();
+    }
 }
 
 
