@@ -25,6 +25,8 @@ namespace Buildings
             ResourceManager = FindObjectOfType<ResourceManager>();
             bubbleImage = bubble.GetComponentInChildren<Image>().gameObject;
             StartCoroutine(BubbleCoroutine(GetBubbleResetTimeInSeconds()));
+            var buildController = FindObjectOfType<BuildController>();
+            buildController.onBubbleSwitch.AddListener(SwitchBubble);
         }
         
         protected virtual void OnMouseDown()
@@ -43,10 +45,16 @@ namespace Buildings
         private void ShowBubble()
         {
             bubble.SetActive(true);
-            if (Flags.TaxEvasionEventFlag && Random.value > 0.6)
+            if (Flags.TaxEvasionEventFlag && Random.value > 0.6 || Flags.BubbleOffFlag)
                 bubbleImage.SetActive(false);
             else
                 bubbleImage.SetActive(true);
+        }
+
+        private void SwitchBubble()
+        {
+            if (bubble.activeSelf)
+                bubbleImage.SetActive(!bubbleImage.activeSelf);
         }
 
         private void HideBubble()

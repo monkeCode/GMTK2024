@@ -1,4 +1,5 @@
-﻿using GameResources;
+﻿using DefaultNamespace;
+using GameResources;
 using Models;
 using UnityEngine;
 using UnityEngine.Events;
@@ -88,5 +89,13 @@ namespace Buildings
                 buildingPrice.MoneyPrice != 0 ? buildingPrice.MoneyPrice + 2 : 0
             );
         }
+
+        public void SwitchBubbles()
+        {
+            Flags.BubbleOffFlag = !Flags.BubbleOffFlag;
+            onBubbleSwitch.Invoke();
+        }
+
+        public UnityEvent onBubbleSwitch;
     }
 }

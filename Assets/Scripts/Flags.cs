@@ -5,5 +5,6 @@
         public static bool DigitalRomanReformFlag;
         public static bool BookkeepingMistakeEventFlag;
         public static bool TaxEvasionEventFlag;
+        public static bool BubbleOffFlag;
     }
 }
