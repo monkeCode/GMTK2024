@@ -57,12 +57,12 @@ namespace UI
 
         public void onSfxChanged()
         {
-            _musicMixer.SetFloat("sfxVol", _sfxSlider.value*80-80);
+            _musicMixer.SetFloat("sfxVol", -80-20* Mathf.Log(1/((_sfxSlider.value)*15+1),2));
         }
 
         public void onMusicChanged()
         {
-            _musicMixer.SetFloat("musicVol", _musicSlider.value*80-80);
+            _musicMixer.SetFloat("musicVol", -80-20* Mathf.Log(1/((_musicSlider.value)*15+1),2));
         }
 
     }

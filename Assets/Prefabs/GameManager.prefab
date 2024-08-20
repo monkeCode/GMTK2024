@@ -52,6 +52,8 @@ MonoBehaviour:
   _groundWinter: {fileID: 11400000, guid: 78d8b6df8a295b34b90421a77668684d, type: 2}
   _riverWinter: {fileID: 11400000, guid: f62e44ae621193942b71cc24a4394b94, type: 2}
   _roadWinter: {fileID: 11400000, guid: aee8f7e6c8031344a9ae1fc2c025ce8a, type: 2}
+  _wheat: {fileID: 11400000, guid: 58e8a51e7a91aa245988143bafe6cafc, type: 2}
+  _corn: {fileID: 11400000, guid: b3b88ac1661e011418e782279eacf214, type: 2}
   _tilemap: {fileID: 0}
   _decorations:
   - {fileID: 8627795409601158349, guid: e5306ea229d3d8349a3a328742a43988, type: 3}
@@ -110,9 +112,6 @@ MonoBehaviour:
   - {fileID: 1048155406631184243, guid: 982f9069ed3c2cf4e81120a0b1af7e8d, type: 3}
   - {fileID: 1048155406631184243, guid: 8d2fe91fd347a7f47b308c622d513ee0, type: 3}
   - {fileID: 1048155406631184243, guid: 3dca1348ab63f6c4aa135e449a169fbd, type: 3}
-  _fieldPrefabs:
-  - {fileID: 4049784575009226491, guid: 69c713356dafe51409593c3258a5d9f8, type: 3}
-  - {fileID: 2029725970649860255, guid: 1fc0976fe6440fd4eacc38cd7c646ce1, type: 3}
 --- !u!82 &8443667924797676639
 AudioSource:
   m_ObjectHideFlags: 0

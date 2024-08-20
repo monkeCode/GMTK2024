@@ -15,7 +15,7 @@ namespace Events
             base.StartEvent(eventDurationInSeconds);
         }
 
-        protected override void EndEvent()
+        public override void EndEvent()
         {
             Constants.Buildings.TowerIncome = Constants.Buildings.DefaultIncome;
         }

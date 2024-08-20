@@ -7,7 +7,7 @@ namespace Events
         protected override int BaseEventDurationInSeconds => 60;
         protected override string Headline => "WINTER IS COMING";
         protected override string Description => "Winter is coming, milord. People will stock their food";
-        protected override Sprite Image => null; //TODO: добавить пикчу
+        protected override Sprite Image => Resources.Load<Sprite>("#1 - Transparent Icons_281");
 
         public override void StartEvent(int eventDurationInSeconds)
         {
@@ -16,7 +16,7 @@ namespace Events
             GameManager.Instance.StartWinter();
         }
 
-        protected override void EndEvent()
+        public override void EndEvent()
         {
             base.EndEvent();
             Constants.Buildings.FarmIncome = Constants.Buildings.DefaultIncome;

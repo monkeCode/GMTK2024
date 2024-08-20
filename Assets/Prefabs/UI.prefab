@@ -1194,7 +1194,6 @@ MonoBehaviour:
   pauseMenu: {fileID: 4547852827605555092}
   _sfxSlider: {fileID: 1503514277342839887}
   _musicSlider: {fileID: 4238021911487554874}
-  _sfxMixer: {fileID: 24100000, guid: b5322457e9c005d46a00c089e5edbe89, type: 2}
   _musicMixer: {fileID: 24100000, guid: 808eac838372ac34a9063f28f1d3cee3, type: 2}
 --- !u!1 &4938480634540868167
 GameObject:
@@ -1919,7 +1918,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2184,7 +2183,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2436,7 +2435,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

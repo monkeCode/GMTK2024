@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Buildings;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class Mapdrawer : MonoBehaviour
     [SerializeField] private TileBase _riverWinter;
     [SerializeField] private TileBase _roadWinter;
 
+    [SerializeField] private TileBase _wheat;
+    [SerializeField] private TileBase _corn;
+
     [SerializeField] private Tilemap _tilemap;
 
     [FormerlySerializedAs("_spriteDecorations")]
@@ -36,6 +40,8 @@ public class Mapdrawer : MonoBehaviour
     public Action WinterStarted;
 
     private AudioSource _audioSource;
+
+    private bool _isWinter = false;
 
     public void Draw(CellType[,] logicMap)
     {
@@ -63,6 +69,7 @@ public class Mapdrawer : MonoBehaviour
         _tilemap.SwapTile(_road, _roadWinter);
         _tilemap.SwapTile(_ground, _groundWinter);
         WinterStarted?.Invoke();
+        _isWinter = true;
     }
 
     public void DrawSpring()
@@ -71,6 +78,7 @@ public class Mapdrawer : MonoBehaviour
         _tilemap.SwapTile(_roadWinter, _road);
         _tilemap.SwapTile(_groundWinter, _ground);
         SpringStarted?.Invoke();
+        _isWinter = false;
     }
 
     public static (float,float) ConvertCoord(float x, float y)
@@ -137,12 +145,24 @@ public class Mapdrawer : MonoBehaviour
             StartCoroutine(SpawnHouseAnimation(house.transform, yn));
     }
 
+    public void DrawWheat(int x, int y)
+    {
+            _tilemap.SetTile(new Vector3Int(x,y,0), null);
+            _tilemap.SetTile(new Vector3Int(x,y,0), _wheat);
+    }
+    public void DrawCorn(int x, int y)
+    {
+        _tilemap.SetTile(new Vector3Int(x,y,0), null);
+        _tilemap.SetTile(new Vector3Int(x,y,0), _corn);
+    }
+
     public void DrawRoad(ICollection<Vector2Int> roadPoints)
     {
         foreach (var point in roadPoints)
         {
             _tilemap.SetTile((Vector3Int)point, null);
-            _tilemap.SetTile((Vector3Int)point, _road);
+            _tilemap.SetTile((Vector3Int)point, _isWinter? _roadWinter:_road);
+            DeleteDecorationAt(point.x, point.y);
         }
     }
 

@@ -7,9 +7,9 @@ namespace Buildings
         [SerializeField] private SpriteRenderer _krutilka;
         protected override int Income => Constants.Buildings.FarmIncome;
         
-        protected override void OnMouseDown()
+        protected override void OnMouseEnter()
         {
-            base.OnMouseDown();
+            base.OnMouseEnter();
             ResourceManager.AddFood(Income);
         }
 

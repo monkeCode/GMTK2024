@@ -11,6 +11,8 @@ namespace Events
         protected abstract string Description { get; }
         protected abstract Sprite Image { get; }
 
+        public bool EventActive { get; private set; } = false;
+
         private void Awake()
         {
             eventDescriptionController = FindObjectOfType<EventDescriptionController>();
@@ -19,6 +21,7 @@ namespace Events
         public void StartEvent()
         {
             StartEvent(BaseEventDurationInSeconds);
+            EventActive = true;
         }
 
         public virtual void StartEvent(int eventDurationInSeconds)
@@ -30,12 +33,13 @@ namespace Events
         protected virtual IEnumerator DelayTillTheEnd(int eventDurationInSeconds)
         {
             yield return new WaitForSeconds(eventDurationInSeconds);
-            EndEvent();
+            if(EventActive)
+                EndEvent();
         }
 
-        protected virtual void EndEvent()
+        public virtual void EndEvent()
         {
-            
+            EventActive = false;
         }
     }
 }

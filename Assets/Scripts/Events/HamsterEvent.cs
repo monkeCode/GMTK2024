@@ -22,10 +22,12 @@ namespace Events
         public override void StartEvent(int eventDurationInSeconds)
         {
             base.StartEvent(eventDurationInSeconds);
-            hamster = Instantiate(hamsterPrefab);
+            var pos = Camera.main.transform.position;
+            pos.z = 0;
+            hamster = Instantiate(hamsterPrefab, pos , Quaternion.identity);
         }
 
-        protected override void EndEvent()
+        public override void EndEvent()
         {
             base.EndEvent();
             Destroy(hamster);

@@ -11,7 +11,7 @@ namespace Events
 
         protected override string Description => "Well, that is definitely one of the days. Guess we will randomly trade resources then?";
 
-        protected override Sprite Image => null; // TODO: добавить пикчу
+        protected override Sprite Image => Resources.Load<Sprite>("#1 - Transparent Icons_277");
 
         public override void StartEvent(int eventDurationInSeconds)
         {

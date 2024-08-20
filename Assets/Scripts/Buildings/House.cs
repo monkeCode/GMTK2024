@@ -4,9 +4,9 @@
     {
         protected override int Income => Constants.Buildings.HouseIncome;
         
-        protected override void OnMouseDown()
+        protected override void OnMouseEnter()
         {
-            base.OnMouseDown();
+            base.OnMouseEnter();
             ResourceManager.AddMoney(Income);
         }
     }

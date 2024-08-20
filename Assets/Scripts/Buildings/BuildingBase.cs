@@ -13,8 +13,9 @@ namespace Buildings
         
         [SerializeField] private GameObject bubble;
         private GameObject bubbleImage;
-        [SerializeField] private int minResetTime = 4;
-        [SerializeField] private int maxResetTime = 10;
+        public virtual float MinResetTime => Constants.Buildings.MinDelayBubble;
+        public virtual float MaxResetTime => Constants.Buildings.MaxDelayBubble;
+
         [SerializeField] private AudioSource audioSource;
 
         private void Start()
@@ -24,12 +25,13 @@ namespace Buildings
             StartCoroutine(BubbleCoroutine(GetBubbleResetTimeInSeconds()));
         }
         
-        protected virtual void OnMouseDown()
+        protected virtual void OnMouseEnter()
         {
             Debug.Log("click");
             PlaySound();
             HideBubble();
         }
+
 
         private void ShowBubble()
         {
@@ -46,15 +48,15 @@ namespace Buildings
             StartCoroutine(BubbleCoroutine(GetBubbleResetTimeInSeconds()));
         }
 
-        private IEnumerator BubbleCoroutine(int resetTimeInSeconds)
+        private IEnumerator BubbleCoroutine(float resetTimeInSeconds)
         {
             yield return new WaitForSeconds(resetTimeInSeconds);
             ShowBubble();
         }
 
-        private int GetBubbleResetTimeInSeconds()
+        private float GetBubbleResetTimeInSeconds()
         {
-            return Random.Range(minResetTime, maxResetTime);
+            return Random.Range(MinResetTime, MaxResetTime);
         }
 
         private void PlaySound()

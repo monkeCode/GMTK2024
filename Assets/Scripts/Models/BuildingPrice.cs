@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Models
 {
     [Serializable]
-    public class BuildingPrice
+    public struct BuildingPrice
     {
         public BuildingPrice(int foodPrice, int armyPrice, int moneyPrice)
         {

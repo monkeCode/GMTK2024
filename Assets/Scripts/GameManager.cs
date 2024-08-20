@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> _housePrefabs;
     [SerializeField] private List<GameObject> _millPrefabs;
     [SerializeField] private List<GameObject> _towerPrefabs;
-    [SerializeField] private List<GameObject> _fieldPrefabs;
 
     private HashSet<Vector2Int> _allowedBuildPositions = new();
     private HashSet<Vector2Int> _closestBuildPositions = new();
@@ -127,13 +126,54 @@ public class GameManager : MonoBehaviour
 
     public Vector2Int BuildMill()
     {
-        return BuildSmth(_millPrefabs[Random.Range(0, _millPrefabs.Count)]);
+        var pos =  BuildSmth(_millPrefabs[Random.Range(0, _millPrefabs.Count)]);
+        var wheat = Random.Range(0, 2) == 1;
+        const float buildProba = 0.7f;
+
+        void BuildCulture(int xS, int yS)
+        {
+            List<Vector2Int> poses = new List<Vector2Int>();
+            for(int x = Mathf.Max(0, xS-1); x < Mathf.Min(xS+2, Map.GetLength(0)); x++)
+            {
+                for (int y = Mathf.Max(0, yS - 1); y < Mathf.Min(yS + 2, Map.GetLength(1)); y++)
+                {
+                    if (Map[x, y] != CellType.Empty || Mathf.Abs(x-xS) == Mathf.Abs(y-yS) || !_allowedBuildPositions.Contains(new Vector2Int(x,y))) continue;
+
+                    poses.Add(new Vector2Int(x,y));
+
+                }
+            }
+
+            if (poses.Count ==0)
+                return;
+            var newPos = poses[Random.Range(0, poses.Count)];
+            Map[newPos.x, newPos.y] = CellType.House;
+
+            if (wheat)
+                _mapDrawer.DrawWheat(newPos.x, newPos.y);
+            else
+                _mapDrawer.DrawCorn(newPos.x, newPos.y);
+
+            _allowedBuildPositions.Remove(newPos);
+            _closestBuildPositions.Remove(newPos);
+
+            if (Random.value < buildProba)
+            {
+                BuildCulture(newPos.x, newPos.y);
+            }
+        }
+
+        BuildCulture(pos.x, pos.y);
+
+        return pos;
     }
 
     class RoadNode
     {
         public Vector2Int Position { get; set; }
         public RoadNode Last { get; set; }
+
+        public int Deep { get; set; }
     }
 
     private void BuildRoads(Vector2Int fromPoint)
@@ -175,13 +215,13 @@ public class GameManager : MonoBehaviour
          }
          Map[startRoadPoint.x, startRoadPoint.y] = CellType.Road;
 
-         var start = new RoadNode() { Position = startRoadPoint, Last = null };
+         var start = new RoadNode() { Position = startRoadPoint, Last = null, Deep = 0};
          var roadsPoints = new HashSet<Vector2Int>(_allowedRoadPositions);
          Queue<RoadNode> nodes = new Queue<RoadNode>();
          nodes.Enqueue(start);
          RoadNode end = null;
 
-         while (nodes.Count > 0 && end == null)
+         while (nodes.Count > 0 /*&& end == null*/)
          {
              var n = nodes.Dequeue();
 
@@ -197,13 +237,14 @@ public class GameManager : MonoBehaviour
 
                      if (Map[x, y] == CellType.Road && x != startRoadPoint.x && y != startRoadPoint.y)
                      {
-                         end = n;
-                         break;
+                         end = (end is null || end.Deep >  n.Deep)?n:end;
+                         //break;
+                         continue;
                      }
 
                      if(roadsPoints.Remove(new Vector2Int(x,y)))
                      {
-                         var r = new RoadNode() { Position = new Vector2Int(x, y), Last = n };
+                         var r = new RoadNode() { Position = new Vector2Int(x, y), Last = n, Deep = n.Deep+1};
                          nodes.Enqueue(r);
                      }
                  }

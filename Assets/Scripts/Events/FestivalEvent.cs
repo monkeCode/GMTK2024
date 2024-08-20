@@ -20,7 +20,5 @@ namespace Events
             resourceManager.AddFood(resourceManager.MoneyCount);
             
         }
-
-        protected override void EndEvent(){}
     }
 }

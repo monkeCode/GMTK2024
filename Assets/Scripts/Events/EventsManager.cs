@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Events
 {
@@ -11,8 +13,14 @@ namespace Events
         [SerializeField] private int MinEventDelayInSeconds = 30;
         [SerializeField] private int MaxEventDelayInSeconds = 120;
 
+        private AudioSource _audioSource;
+
+        private List<EventBase> _events = new List<EventBase>();
+
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
+
             events = new List<EventBase>
             {
                 gameObject.AddComponent<WarEvent>(), // Можно на другие ресурсы дополнить/скопипастить
@@ -34,8 +42,19 @@ namespace Events
             {
                 yield return new WaitForSeconds(GetNextEventDelay());
                 Debug.Log("Start event");
-                events[Random.Range(0, events.Count)].StartEvent();
+                _audioSource.Play();
+                var ev = events[Random.Range(0, events.Count)];
+                //var ev = events[7];
+                ev.StartEvent();
+                _events.Add(ev);
             }
+        }
+
+        private void OnDestroy()
+        {
+            foreach(var e in events)
+                if(e.EventActive)
+                    e.EndEvent();
         }
 
         private float GetNextEventDelay()

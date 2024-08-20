@@ -229,8 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 8309834612774053188}
-  minResetTime: 4
-  maxResetTime: 10
+  MaxResetTime: 20
   audioSource: {fileID: 5531589638313778638}
 --- !u!50 &4025508864884578950
 Rigidbody2D:

@@ -13,7 +13,7 @@ namespace Events
         protected override int BaseEventDurationInSeconds => 60;
         protected override string Headline => "DIGITAL REFORM";
         protected override string Description => "Have you thought about Roman Empire today? Our bookkeepers thought and released roman digital reform";
-        protected override Sprite Image => null; //TODO: пикчу добавить
+        protected override Sprite Image => Resources.Load<Sprite>("#1 - Transparent Icons_177");
         private ResourceManager resourceManager;
         private BuildController buildController;
         
@@ -28,7 +28,7 @@ namespace Events
 
         }
 
-        protected override void EndEvent()
+        public override void EndEvent()
         {
             base.EndEvent();
             Flags.DigitalRomanReformFlag = false;

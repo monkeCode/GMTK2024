@@ -12,7 +12,7 @@ namespace Events
         protected override string Description =>
             "Our bookkeeper got drunk last night and made a few mistakes. Now instead of getting taxes from people, we might have to pay some of them";
 
-        protected override Sprite Image => null; //TODO: пикчу найти
+        protected override Sprite Image => Resources.Load<Sprite>("#1 - Transparent Icons_174");
 
         public override void StartEvent(int eventDurationInSeconds)
         {
@@ -20,7 +20,7 @@ namespace Events
             Flags.BookkeepingMistakeEventFlag = true;
         }
         
-        protected override void EndEvent()
+        public override void EndEvent()
         {
             base.EndEvent();
             Flags.BookkeepingMistakeEventFlag = false;

@@ -11,7 +11,7 @@ namespace Events
         protected override int BaseEventDurationInSeconds => 0;
         protected override string Headline => $"NEW {word.ToUpper()}";
         protected override string Description => $"New {word} has come. Nothing changes for you, {Environment.UserName}";
-        protected override Sprite Image => null; // TODO: Добавить пикчу
+        protected override Sprite Image => Resources.Load<Sprite>("#1 - Transparent Icons_205");
         public override void StartEvent(int eventDurationInSeconds)
         {
             word = words[Random.Range(0, words.Length - 1)];
