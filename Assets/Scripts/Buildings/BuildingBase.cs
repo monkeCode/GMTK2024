@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using DefaultNamespace;
 using GameResources;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Buildings
 {
@@ -27,9 +29,14 @@ namespace Buildings
         
         protected virtual void OnMouseDown()
         {
-            Debug.Log("click");
-            PlaySound();
-            HideBubble();
+                PlaySound();
+                HideBubble();
+        }
+
+        protected void OnMouseEnter()
+        {
+            if(Input.GetAxis("Fire1")>0)
+                OnMouseDown();
         }
 
 
