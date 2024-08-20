@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c001e831d133f1b408964daacf6175c9, type: 3}
   m_Name: Generators_Default
   m_EditorClassIdentifier: 
-  _size: 30
-  _riverScale: 4
-  _riverMax: 0.54
-  _riverMin: 0.47
+  _size: 100
+  _riversCount: 2
+  _dodgeProbability: 0.3

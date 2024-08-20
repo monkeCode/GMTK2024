@@ -25,7 +25,7 @@ namespace Buildings
             StartCoroutine(BubbleCoroutine(GetBubbleResetTimeInSeconds()));
         }
         
-        protected virtual void OnMouseEnter()
+        protected virtual void OnMouseDown()
         {
             Debug.Log("click");
             PlaySound();

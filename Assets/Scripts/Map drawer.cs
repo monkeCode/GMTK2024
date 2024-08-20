@@ -115,6 +115,11 @@ public class Mapdrawer : MonoBehaviour
         var (xn, yn) = ConvertCoord(x, y);
         foreach (var dec in Physics2D.OverlapCircleAll(new Vector2(xn, yn), 1, _decorationLayer))
         {
+            if (dec.TryGetComponent(out TreeDecoration tree))
+            {
+                SpringStarted -= tree.MakeInSpring;
+                WinterStarted -= tree.MakeItWinter;
+            }
             Destroy(dec.gameObject);
         }
     }
@@ -161,7 +166,7 @@ public class Mapdrawer : MonoBehaviour
         foreach (var point in roadPoints)
         {
             _tilemap.SetTile((Vector3Int)point, null);
-            _tilemap.SetTile((Vector3Int)point, _isWinter? _roadWinter:_road);
+            _tilemap.SetTile((Vector3Int)point, _isWinter ? _roadWinter : _road);
             DeleteDecorationAt(point.x, point.y);
         }
     }

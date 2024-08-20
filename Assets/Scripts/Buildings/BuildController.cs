@@ -83,9 +83,9 @@ namespace Buildings
         {
             Debug.Log("build");
             return new BuildingPrice(
-                buildingPrice.FoodPrice != 0 ? buildingPrice.FoodPrice + 5 : 0, 
-                buildingPrice.ArmyPrice != 0 ? buildingPrice.ArmyPrice + 5 : 0,
-                buildingPrice.MoneyPrice != 0 ? buildingPrice.MoneyPrice + 5 : 0
+                buildingPrice.FoodPrice != 0 ? buildingPrice.FoodPrice + 3 : 0,
+                buildingPrice.ArmyPrice != 0 ? buildingPrice.ArmyPrice + 3 : 0,
+                buildingPrice.MoneyPrice != 0 ? buildingPrice.MoneyPrice + 3 : 0
             );
         }
     }

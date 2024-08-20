@@ -10,7 +10,7 @@ public static class Constants
 
     public static class Buildings
     {
-        public const int DefaultIncome = 7;
+        public const int DefaultIncome = 10;
         public static int HouseIncome { get; set; } = DefaultIncome;
         public static int FarmIncome { get; set; } = DefaultIncome;
         public static int TowerIncome { get; set; } = DefaultIncome;

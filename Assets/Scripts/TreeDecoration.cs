@@ -27,6 +27,7 @@ public class TreeDecoration : MonoBehaviour
         _spriteRenderer.sprite = _sprites[_spriteIndex].Spring;
     }
 
+
     public void MakeInSpring()
     {
         _spriteRenderer.sprite = _sprites[_spriteIndex].Spring;
