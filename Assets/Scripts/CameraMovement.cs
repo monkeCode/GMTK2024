@@ -13,6 +13,6 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         var scroll = -Input.GetAxis("Mouse ScrollWheel");
-        _camera.orthographicSize = Mathf.Clamp(scroll + _camera.orthographicSize, 0, 8);
+        _camera.orthographicSize = Mathf.Clamp(scroll + _camera.orthographicSize, 3, 12);
     }
 }
