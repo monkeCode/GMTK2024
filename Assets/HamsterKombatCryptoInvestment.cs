@@ -8,12 +8,10 @@ using Random = UnityEngine.Random;
 public class HamsterKombatCryptoInvestment : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private Vector3 target;
+    [SerializeField] private Vector2 target;
     [SerializeField] private float walkingRadius = 1;
     [SerializeField] private AudioSource audioSource;
     private ResourceManager resourceManager;
-
-    private Vector2 point;
 
     private void OnMouseDown()
     {
@@ -21,15 +19,14 @@ public class HamsterKombatCryptoInvestment : MonoBehaviour
         resourceManager.AddFood(RandLoot());
         resourceManager.AddMoney(RandLoot());
         audioSource.Play();
-
-        int RandLoot() => Random.Range(0, 3);
     }
+
+    int RandLoot() => Random.Range(4, 7);
 
     void Start()
     {
         GetRandomDirection();
         resourceManager = FindObjectOfType<ResourceManager>();
-        point = transform.position;
 
     }
 
@@ -41,13 +38,13 @@ public class HamsterKombatCryptoInvestment : MonoBehaviour
 
     private void GetRandomDirection()
     {
-        target = Random.insideUnitCircle * walkingRadius + point;
+        target = Random.insideUnitCircle * walkingRadius + (Vector2)transform.position;
 
     }
 
     private void Move() // Хочется научить не выбегать за экран
     {
-        transform.position += (target-transform.position).normalized * (Time.deltaTime * speed);
+        transform.position += ((Vector3)target-transform.position).normalized * (Time.deltaTime * speed);
         var distance = Vector3.Distance(transform.position, target);
         if (distance < 1)
         {

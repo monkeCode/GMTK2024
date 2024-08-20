@@ -15,8 +15,8 @@ public static class Constants
         public static int FarmIncome { get; set; } = DefaultIncome;
         public static int TowerIncome { get; set; } = DefaultIncome;
 
-        public const float MaxDelayBubble = 20;
-        public const float MinDelayBubble = 10;
+        public const float MaxDelayBubble = 27;
+        public const float MinDelayBubble = 15;
 
         public static readonly BuildingPrice BaseHousePrice = new(5, 5, 0);
         public static readonly BuildingPrice BaseFarmPrice = new(0, 5, 5);
